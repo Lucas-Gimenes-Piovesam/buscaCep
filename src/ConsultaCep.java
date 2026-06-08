@@ -25,7 +25,7 @@ public class ConsultaCep {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+//a
         return new Gson().fromJson(response.body(), Endereco.class);
     }
 }
