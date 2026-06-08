@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class ConsultaCep {
 
-    public Endereco buscaEndereco(String cep){
+    public Endereco buscaEndereco(String cep) {
         URI endereco = URI.create("https://viacep.com.br/ws/" + cep + "/json");
 
         HttpClient client = HttpClient.newHttpClient();
@@ -20,12 +20,13 @@ public class ConsultaCep {
             response = HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Não foi possível obter o endereço a partir desse CEP");
+
         }
-//a
         return new Gson().fromJson(response.body(), Endereco.class);
+
     }
+
 }
+
