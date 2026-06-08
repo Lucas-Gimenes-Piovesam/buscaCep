@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Principal {
@@ -11,8 +12,10 @@ public class Principal {
         try {
             Endereco novoEndereco = consultaCep.buscaEndereco(cep);
             System.out.println(novoEndereco);
+            GeradorDeArquivo gerador = new GeradorDeArquivo();
+            gerador.salvaJson(novoEndereco);
         }
-        catch (RuntimeException e) {
+        catch (RuntimeException | IOException e) {
             System.out.println(e.getMessage());
             System.out.println("Finalizando o progama");
         }
